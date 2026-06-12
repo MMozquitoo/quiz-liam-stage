@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Stage - Semaine 1 | Butterfly Agency</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(120, 80, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(255, 100, 200, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(60, 200, 255, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Welcome Screen */
+        .welcome-screen {
+            text-align: center;
+            padding: 60px 20px;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .welcome-screen .emoji-big {
+            font-size: 64px;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .welcome-screen h1 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #7850ff, #ff64c8, #3cc8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            line-height: 1.2;
+        }
+
+        .welcome-screen p {
+            color: #888;
+            font-size: 1rem;
+            line-height: 1.6;
+            max-width: 500px;
+            margin: 0 auto 12px;
+        }
+
+        .welcome-screen .rules {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 24px;
+            margin: 32px 0;
+            text-align: left;
+        }
+
+        .welcome-screen .rules h3 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #7850ff;
+            margin-bottom: 16px;
+        }
+
+        .welcome-screen .rules li {
+            list-style: none;
+            padding: 8px 0;
+            font-size: 0.95rem;
+            color: #aaa;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .welcome-screen .rules li span {
+            color: #7850ff;
+            font-weight: 600;
+        }
+
+        .name-input-group {
+            display: flex;
+            gap: 12px;
+            max-width: 400px;
+            margin: 32px auto 0;
+        }
+
+        .name-input-group input {
+            flex: 1;
+            padding: 14px 20px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .name-input-group input:focus {
+            border-color: #7850ff;
+        }
+
+        .name-input-group input::placeholder {
+            color: #555;
+        }
+
+        .btn-start {
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #7850ff, #6040dd);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-start:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(120, 80, 255, 0.3);
+        }
+
+        .btn-start:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            margin-bottom: 32px;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .progress-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #666;
+        }
+
+        .progress-count {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #7850ff;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #7850ff, #ff64c8);
+            border-radius: 2px;
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Question Card */
+        .question-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 40px;
+            animation: slideUp 0.5s ease;
+        }
+
+        .question-type-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .badge-planning { background: rgba(120, 80, 255, 0.15); color: #a48bff; }
+        .badge-missions { background: rgba(255, 100, 200, 0.15); color: #ff8cd8; }
+        .badge-outils { background: rgba(60, 200, 255, 0.15); color: #6dd8ff; }
+        .badge-culture { background: rgba(255, 200, 60, 0.15); color: #ffd966; }
+        .badge-texte { background: rgba(100, 255, 160, 0.15); color: #80ffaa; }
+
+        .question-number {
+            font-size: 0.75rem;
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+        .question-text {
+            font-size: 1.3rem;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 28px;
+            color: #fff;
+        }
+
+        /* Multiple Choice */
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .option-btn {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            color: #ccc;
+            font-size: 0.95rem;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .option-btn:hover:not(.selected):not(.correct):not(.incorrect) {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .option-letter {
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            flex-shrink: 0;
+            transition: all 0.3s;
+        }
+
+        .option-btn.selected {
+            border-color: #7850ff;
+            background: rgba(120, 80, 255, 0.1);
+        }
+
+        .option-btn.selected .option-letter {
+            background: #7850ff;
+            color: #fff;
+        }
+
+        .option-btn.correct {
+            border-color: #34d399;
+            background: rgba(52, 211, 153, 0.1);
+            color: #34d399;
+        }
+
+        .option-btn.correct .option-letter {
+            background: #34d399;
+            color: #000;
+        }
+
+        .option-btn.incorrect {
+            border-color: #f87171;
+            background: rgba(248, 113, 113, 0.1);
+            color: #f87171;
+        }
+
+        .option-btn.incorrect .option-letter {
+            background: #f87171;
+            color: #000;
+        }
+
+        /* Text Input Questions */
+        .text-input-area {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            resize: vertical;
+            min-height: 100px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .text-input-area:focus {
+            border-color: #7850ff;
+        }
+
+        .text-input-area::placeholder {
+            color: #444;
+        }
+
+        /* Feedback */
+        .feedback {
+            margin-top: 20px;
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .feedback.correct {
+            background: rgba(52, 211, 153, 0.08);
+            border: 1px solid rgba(52, 211, 153, 0.2);
+            color: #34d399;
+        }
+
+        .feedback.incorrect {
+            background: rgba(248, 113, 113, 0.08);
+            border: 1px solid rgba(248, 113, 113, 0.2);
+            color: #f87171;
+        }
+
+        .feedback.info {
+            background: rgba(120, 80, 255, 0.08);
+            border: 1px solid rgba(120, 80, 255, 0.2);
+            color: #a48bff;
+        }
+
+        /* Next Button */
+        .btn-next {
+            margin-top: 24px;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #7850ff, #6040dd);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+            display: none;
+        }
+
+        .btn-next:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(120, 80, 255, 0.3);
+        }
+
+        .btn-next.visible {
+            display: inline-block;
+        }
+
+        .btn-submit-text {
+            margin-top: 16px;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #7850ff, #6040dd);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-submit-text:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(120, 80, 255, 0.3);
+        }
+
+        .btn-submit-text:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Results Screen */
+        .results-screen {
+            text-align: center;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .score-circle {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 32px;
+            position: relative;
+        }
+
+        .score-circle::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            padding: 3px;
+            background: linear-gradient(135deg, #7850ff, #ff64c8, #3cc8ff);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+
+        .score-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #7850ff, #ff64c8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .score-label {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        .results-message {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .results-subtitle {
+            color: #888;
+            font-size: 1rem;
+            margin-bottom: 40px;
+        }
+
+        .results-breakdown {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 32px;
+            text-align: left;
+        }
+
+        .results-breakdown h3 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #666;
+            margin-bottom: 16px;
+        }
+
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .breakdown-item:last-child {
+            border-bottom: none;
+        }
+
+        .breakdown-item .q-text {
+            font-size: 0.9rem;
+            color: #aaa;
+            flex: 1;
+            margin-right: 16px;
+        }
+
+        .breakdown-item .q-result {
+            font-size: 0.85rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .breakdown-item .q-result.pass { color: #34d399; }
+        .breakdown-item .q-result.fail { color: #f87171; }
+        .breakdown-item .q-result.text { color: #a48bff; }
+
+        .text-answers-section {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 32px;
+            text-align: left;
+        }
+
+        .text-answers-section h3 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #666;
+            margin-bottom: 16px;
+        }
+
+        .text-answer-item {
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .text-answer-item:last-child {
+            border-bottom: none;
+        }
+
+        .text-answer-item .ta-question {
+            font-size: 0.85rem;
+            color: #7850ff;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .text-answer-item .ta-response {
+            font-size: 0.9rem;
+            color: #ccc;
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        .btn-retry {
+            padding: 14px 40px;
+            background: linear-gradient(135deg, #7850ff, #6040dd);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-retry:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(120, 80, 255, 0.3);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hidden { display: none; }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            .container { padding: 24px 16px; }
+            .question-card { padding: 24px; }
+            .welcome-screen h1 { font-size: 1.7rem; }
+            .question-text { font-size: 1.1rem; }
+            .name-input-group { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    <div class="container">
+        <!-- Welcome -->
+        <div id="welcome" class="welcome-screen">
+            <span class="emoji-big">🦋</span>
+            <h1>Quiz Semaine 1<br>Butterfly Agency</h1>
+            <p>Teste tes connaissances sur ta première semaine de stage : planning, missions, outils et culture IA.</p>
+
+            <div class="rules">
+                <h3>Règles du jeu</h3>
+                <ul>
+                    <li><span>15</span> questions au total</li>
+                    <li><span>QCM</span> + questions ouvertes</li>
+                    <li><span>Score</span> calculé sur les QCM</li>
+                    <li><span>Honnêteté</span> — pas de triche, c'est pour toi</li>
+                </ul>
+            </div>
+
+            <div class="name-input-group">
+                <input type="text" id="nameInput" placeholder="Ton prénom..." autocomplete="off">
+                <button class="btn-start" id="btnStart" disabled>C'est parti</button>
+            </div>
+        </div>
+
+        <!-- Quiz -->
+        <div id="quiz" class="hidden">
+            <div class="progress-container">
+                <div class="progress-header">
+                    <span class="progress-label">Progression</span>
+                    <span class="progress-count" id="progressCount">1 / 15</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 6.67%"></div>
+                </div>
+            </div>
+            <div id="questionContainer"></div>
+        </div>
+
+        <!-- Results -->
+        <div id="results" class="results-screen hidden"></div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                type: "mcq",
+                category: "planning",
+                badge: "Planning",
+                question: "Quel jour de la semaine Liam est-il en OFF le matin ?",
+                options: ["Mardi", "Mercredi", "Jeudi", "Vendredi"],
+                correct: 2,
+                explanation: "Le jeudi matin est OFF. L'après-midi et le soir c'est The Recap."
+            },
+            {
+                type: "mcq",
+                category: "outils",
+                badge: "Outils",
+                question: "Quels outils font partie de la formation donnée par CAM le premier jour ?",
+                options: [
+                    "Google Meet, Slack, Calendar, ChatGPT",
+                    "Figma, Notion, Trello, Canva",
+                    "VS Code, GitHub, Vercel, Claude",
+                    "Zoom, Asana, Miro, Midjourney"
+                ],
+                correct: 0,
+                explanation: "CAM forme sur Google Meet, Slack, Calendar et ChatGPT pendant le Day 1."
+            },
+            {
+                type: "mcq",
+                category: "missions",
+                badge: "Missions",
+                question: "Pour quelles entreprises Liam doit-il travailler sur Qonto et Revolut ?",
+                options: [
+                    "Butterfly Agency et CAM",
+                    "MCAN et SK (Singapour)",
+                    "NRF Europe et The Recap",
+                    "Laurine Events et BY"
+                ],
+                correct: 1,
+                explanation: "Qonto et Revolut pour MCAN et pour SK à Singapour."
+            },
+            {
+                type: "text",
+                category: "culture",
+                badge: "Culture IA",
+                question: "Dans la vidéo 'Understanding AI Agents in 10 Minutes', qu'est-ce qu'un agent IA ? Explique avec tes mots.",
+                placeholder: "Un agent IA c'est..."
+            },
+            {
+                type: "mcq",
+                category: "planning",
+                badge: "Planning",
+                question: "Que doit faire Liam le mardi (Day 2) ?",
+                options: [
+                    "Aller à Meudon toute la journée",
+                    "Matin chez lui pour apprendre, après-midi en call",
+                    "Enregistrer un podcast",
+                    "Travailler sur les projets IA"
+                ],
+                correct: 1,
+                explanation: "Le mardi est en home : matin lecture/apprentissage, après-midi call avec l'équipe."
+            },
+            {
+                type: "mcq",
+                category: "missions",
+                badge: "Missions",
+                question: "Quel type d'audit Liam doit-il réaliser pour BY sur YouTube ?",
+                options: [
+                    "Audit technique SEO",
+                    "Audit social media",
+                    "Audit financier",
+                    "Audit de sécurité"
+                ],
+                correct: 1,
+                explanation: "C'est un audit social BY // YT — analyse des réseaux sociaux et YouTube."
+            },
+            {
+                type: "text",
+                category: "culture",
+                badge: "Culture IA",
+                question: "D'après la vidéo sur les prompts efficaces, cite 2 techniques pour écrire un bon prompt.",
+                placeholder: "Technique 1 :...\nTechnique 2 :..."
+            },
+            {
+                type: "mcq",
+                category: "planning",
+                badge: "Planning",
+                question: "Combien d'épisodes de podcast Liam doit-il écouter en devoir le Day 1 ?",
+                options: ["1 épisode", "2 épisodes", "3 épisodes", "5 épisodes"],
+                correct: 2,
+                explanation: "3 épisodes : un NRF, une revue presse, et un Le Café des Femmes."
+            },
+            {
+                type: "mcq",
+                category: "missions",
+                badge: "Missions",
+                question: "Quel événement Liam doit-il scraper pour 2026 ?",
+                options: ["CES Las Vegas", "NRF Europe", "VivaTech", "Web Summit"],
+                correct: 1,
+                explanation: "Scraping NRF Europe 2026 fait partie des missions principales."
+            },
+            {
+                type: "text",
+                category: "culture",
+                badge: "Culture IA",
+                question: "Qu'est-ce que la Programmation Orientée Objet (OOP) ? Donne un exemple simple.",
+                placeholder: "L'OOP c'est..."
+            },
+            {
+                type: "mcq",
+                category: "missions",
+                badge: "Missions",
+                question: "Quel est l'objectif final du stage de Liam ?",
+                options: [
+                    "Devenir community manager",
+                    "Construire un projet IA de A à Z, coaché par CAM",
+                    "Créer un site web pour Butterfly Agency",
+                    "Apprendre le montage vidéo professionnel"
+                ],
+                correct: 1,
+                explanation: "L'objectif final est de construire un projet IA qui lui appartient de A à Z, coaché par CAM."
+            },
+            {
+                type: "mcq",
+                category: "planning",
+                badge: "Planning",
+                question: "Qui présente les réseaux sociaux à Liam le Day 1 ?",
+                options: ["CAM", "Laurine", "Cristian", "Le client"],
+                correct: 1,
+                explanation: "Laurine fait la présentation des réseaux sociaux pendant le Day 1."
+            },
+            {
+                type: "mcq",
+                category: "missions",
+                badge: "Missions",
+                question: "Quel type d'événements Liam doit-il lister dans le monde entier ?",
+                options: [
+                    "Événements tech & startup",
+                    "Événements ecom & retail pour être speaker",
+                    "Conférences académiques",
+                    "Salons de mode et luxe"
+                ],
+                correct: 1,
+                explanation: "Lister les events ecom & retail worldwide pour être speaker."
+            },
+            {
+                type: "text",
+                category: "culture",
+                badge: "Culture IA",
+                question: "Qu'est-ce que le HTML et à quoi sert-il ? Cite 2 balises que tu connais.",
+                placeholder: "Le HTML c'est...\nBalise 1 :...\nBalise 2 :..."
+            },
+            {
+                type: "text",
+                category: "missions",
+                badge: "Missions",
+                question: "En une phrase, qu'est-ce que tu retiens le plus de ta première semaine ? Qu'est-ce qui t'a le plus surpris ou motivé ?",
+                placeholder: "Ce que je retiens..."
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+        let userName = "";
+        let answers = [];
+
+        const nameInput = document.getElementById("nameInput");
+        const btnStart = document.getElementById("btnStart");
+
+        nameInput.addEventListener("input", () => {
+            btnStart.disabled = nameInput.value.trim().length === 0;
+        });
+
+        nameInput.addEventListener("keydown", (e) => {
+            if (e.key === "Enter" && nameInput.value.trim().length > 0) startQuiz();
+        });
+
+        btnStart.addEventListener("click", startQuiz);
+
+        function startQuiz() {
+            userName = nameInput.value.trim();
+            document.getElementById("welcome").classList.add("hidden");
+            document.getElementById("quiz").classList.remove("hidden");
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const q = questions[currentQuestion];
+            const container = document.getElementById("questionContainer");
+            const badgeClass = {
+                planning: "badge-planning",
+                missions: "badge-missions",
+                outils: "badge-outils",
+                culture: "badge-culture"
+            }[q.category] || "badge-culture";
+
+            document.getElementById("progressCount").textContent = `${currentQuestion + 1} / ${questions.length}`;
+            document.getElementById("progressFill").style.width = `${((currentQuestion + 1) / questions.length) * 100}%`;
+
+            if (q.type === "mcq") {
+                const letters = ["A", "B", "C", "D"];
+                container.innerHTML = `
+                    <div class="question-card">
+                        <span class="question-type-badge ${badgeClass}">${q.badge}</span>
+                        <div class="question-number">Question ${currentQuestion + 1} sur ${questions.length}</div>
+                        <div class="question-text">${q.question}</div>
+                        <div class="options-list">
+                            ${q.options.map((opt, i) => `
+                                <button class="option-btn" data-index="${i}" onclick="selectOption(this, ${i})">
+                                    <span class="option-letter">${letters[i]}</span>
+                                    <span>${opt}</span>
+                                </button>
+                            `).join("")}
+                        </div>
+                        <div id="feedback" class="feedback hidden"></div>
+                        <button class="btn-next" id="btnNext" onclick="nextQuestion()">Suivante →</button>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = `
+                    <div class="question-card">
+                        <span class="question-type-badge ${badgeClass}">${q.badge}</span>
+                        <div class="question-number">Question ${currentQuestion + 1} sur ${questions.length}</div>
+                        <div class="question-text">${q.question}</div>
+                        <textarea class="text-input-area" id="textAnswer" placeholder="${q.placeholder || 'Écris ta réponse ici...'}" rows="4"></textarea>
+                        <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                            <button class="btn-submit-text" id="btnSubmitText" onclick="submitText()">Valider</button>
+                            <button class="btn-next" id="btnNext" onclick="nextQuestion()">Suivante →</button>
+                        </div>
+                        <div id="feedback" class="feedback hidden"></div>
+                    </div>
+                `;
+                document.getElementById("textAnswer").addEventListener("input", function() {
+                    document.getElementById("btnSubmitText").disabled = this.value.trim().length === 0;
+                });
+                document.getElementById("btnSubmitText").disabled = true;
+            }
+        }
+
+        function selectOption(btn, index) {
+            const q = questions[currentQuestion];
+            const allBtns = document.querySelectorAll(".option-btn");
+            const isCorrect = index === q.correct;
+
+            allBtns.forEach(b => {
+                b.style.pointerEvents = "none";
+                const i = parseInt(b.dataset.index);
+                if (i === q.correct) b.classList.add("correct");
+                if (i === index && !isCorrect) b.classList.add("incorrect");
+            });
+
+            if (isCorrect) score++;
+
+            answers.push({
+                question: q.question,
+                type: "mcq",
+                correct: isCorrect,
+                selected: q.options[index],
+                correctAnswer: q.options[q.correct]
+            });
+
+            const feedback = document.getElementById("feedback");
+            feedback.classList.remove("hidden");
+            feedback.className = `feedback ${isCorrect ? "correct" : "incorrect"}`;
+            feedback.textContent = isCorrect
+                ? `✓ Correct ! ${q.explanation}`
+                : `✗ Pas tout à fait. ${q.explanation}`;
+
+            document.getElementById("btnNext").classList.add("visible");
+        }
+
+        function submitText() {
+            const q = questions[currentQuestion];
+            const text = document.getElementById("textAnswer").value.trim();
+
+            if (!text) return;
+
+            document.getElementById("textAnswer").disabled = true;
+            document.getElementById("btnSubmitText").style.display = "none";
+
+            answers.push({
+                question: q.question,
+                type: "text",
+                response: text
+            });
+
+            const feedback = document.getElementById("feedback");
+            feedback.classList.remove("hidden");
+            feedback.className = "feedback info";
+            feedback.textContent = "📝 Réponse enregistrée. Elle sera revue par ton manager.";
+
+            document.getElementById("btnNext").classList.add("visible");
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            if (currentQuestion >= questions.length) {
+                showResults();
+            } else {
+                showQuestion();
+            }
+        }
+
+        function showResults() {
+            document.getElementById("quiz").classList.add("hidden");
+            const resultsDiv = document.getElementById("results");
+            resultsDiv.classList.remove("hidden");
+
+            const mcqCount = answers.filter(a => a.type === "mcq").length;
+            const percentage = Math.round((score / mcqCount) * 100);
+
+            let message, subtitle;
+            if (percentage >= 90) {
+                message = "🔥 Exceptionnel !";
+                subtitle = "Tu as tout retenu, impressionnant pour une première semaine.";
+            } else if (percentage >= 70) {
+                message = "💪 Très bien !";
+                subtitle = "Tu maîtrises bien le sujet. Quelques détails à revoir.";
+            } else if (percentage >= 50) {
+                message = "👍 Pas mal !";
+                subtitle = "Bonne base, mais relis le planning et les missions.";
+            } else {
+                message = "📚 À revoir";
+                subtitle = "Reprends le planning de la semaine et les missions du stage.";
+            }
+
+            const breakdownHTML = answers.map((a, i) => {
+                if (a.type === "mcq") {
+                    return `
+                        <div class="breakdown-item">
+                            <span class="q-text">Q${i + 1}. ${a.question.substring(0, 60)}${a.question.length > 60 ? '...' : ''}</span>
+                            <span class="q-result ${a.correct ? 'pass' : 'fail'}">${a.correct ? '✓' : '✗'}</span>
+                        </div>
+                    `;
+                } else {
+                    return `
+                        <div class="breakdown-item">
+                            <span class="q-text">Q${i + 1}. ${a.question.substring(0, 60)}${a.question.length > 60 ? '...' : ''}</span>
+                            <span class="q-result text">📝</span>
+                        </div>
+                    `;
+                }
+            }).join("");
+
+            const textAnswersHTML = answers
+                .filter(a => a.type === "text")
+                .map(a => `
+                    <div class="text-answer-item">
+                        <div class="ta-question">${a.question}</div>
+                        <div class="ta-response">"${a.response}"</div>
+                    </div>
+                `).join("");
+
+            resultsDiv.innerHTML = `
+                <div class="score-circle">
+                    <div class="score-number">${score}/${mcqCount}</div>
+                    <div class="score-label">${percentage}%</div>
+                </div>
+                <div class="results-message">${message}</div>
+                <div class="results-subtitle">${subtitle}</div>
+
+                <div class="results-breakdown">
+                    <h3>Détail des réponses</h3>
+                    ${breakdownHTML}
+                </div>
+
+                ${textAnswersHTML ? `
+                    <div class="text-answers-section">
+                        <h3>Tes réponses ouvertes</h3>
+                        ${textAnswersHTML}
+                    </div>
+                ` : ''}
+
+                <button class="btn-retry" onclick="location.reload()">Recommencer</button>
+                <p style="margin-top: 24px; color: #555; font-size: 0.8rem;">Quiz créé pour ${userName} — Butterfly Agency — Juin 2026</p>
+            `;
+        }
+    </script>
+</body>
+</html>
