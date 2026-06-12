@@ -5,114 +5,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Stage - Semaine 1 | Butterfly Agency</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap');
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Inter', sans-serif;
             background: #f8f8fa;
             color: #111827;
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
         .container {
-            max-width: 680px;
+            max-width: 860px;
             margin: 0 auto;
-            padding: 48px 20px;
-            position: relative;
+            padding: 48px 28px;
         }
 
-        /* Welcome Screen */
+        /* Welcome */
         .welcome-screen {
             text-align: center;
-            padding: 40px 0;
+            padding: 48px 0;
             animation: fadeIn 0.6s ease;
         }
 
         .logo-mark {
-            width: 56px;
-            height: 56px;
+            width: 64px;
+            height: 64px;
             background: #7C3AED;
-            border-radius: 16px;
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 28px;
-            font-size: 28px;
+            font-size: 32px;
         }
 
         .welcome-screen h1 {
-            font-size: 2rem;
+            font-size: 2.4rem;
             font-weight: 800;
             color: #111827;
-            margin-bottom: 8px;
-            line-height: 1.2;
+            margin-bottom: 10px;
             letter-spacing: -0.02em;
         }
 
         .welcome-screen .subtitle {
             color: #6b7280;
-            font-size: 0.95rem;
+            font-size: 1.1rem;
             line-height: 1.6;
-            max-width: 440px;
+            max-width: 520px;
             margin: 0 auto;
         }
 
-        .welcome-screen .rules {
+        .rules {
             background: #fff;
             border: 1px solid #e5e7eb;
             border-radius: 16px;
-            padding: 24px 28px;
-            margin: 32px 0;
+            padding: 28px 32px;
+            margin: 36px auto;
+            max-width: 500px;
             text-align: left;
         }
 
-        .welcome-screen .rules h3 {
-            font-size: 0.7rem;
+        .rules h3 {
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             color: #9ca3af;
-            margin-bottom: 14px;
+            margin-bottom: 16px;
             font-weight: 600;
         }
 
-        .welcome-screen .rules li {
+        .rules li {
             list-style: none;
-            padding: 7px 0;
-            font-size: 0.9rem;
+            padding: 8px 0;
+            font-size: 1rem;
             color: #4b5563;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .welcome-screen .rules li span {
+        .rules li span {
             color: #7C3AED;
             font-weight: 700;
-            font-size: 0.85rem;
         }
 
         .name-input-group {
             display: flex;
-            gap: 10px;
-            max-width: 400px;
-            margin: 32px auto 0;
+            gap: 12px;
+            max-width: 440px;
+            margin: 36px auto 0;
         }
 
         .name-input-group input {
             flex: 1;
-            padding: 13px 18px;
+            padding: 16px 20px;
             background: #fff;
-            border: 1.5px solid #e5e7eb;
-            border-radius: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 14px;
             color: #111827;
-            font-size: 0.95rem;
+            font-size: 1.05rem;
             font-family: 'Inter', sans-serif;
             outline: none;
             transition: border-color 0.2s;
@@ -120,20 +113,18 @@
 
         .name-input-group input:focus {
             border-color: #7C3AED;
-            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+            box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
         }
 
-        .name-input-group input::placeholder {
-            color: #c4c7cc;
-        }
+        .name-input-group input::placeholder { color: #c4c7cc; }
 
         .btn-primary {
-            padding: 13px 28px;
+            padding: 16px 32px;
             background: #7C3AED;
             border: none;
-            border-radius: 12px;
+            border-radius: 14px;
             color: #fff;
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
@@ -142,30 +133,27 @@
 
         .btn-primary:hover {
             background: #6d28d9;
-            box-shadow: 0 4px 16px rgba(124, 58, 237, 0.25);
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
         }
 
         .btn-primary:disabled {
             opacity: 0.35;
             cursor: not-allowed;
             box-shadow: none;
-            background: #7C3AED;
         }
 
-        /* Progress Bar */
-        .progress-container {
-            margin-bottom: 28px;
-        }
+        /* Progress */
+        .progress-container { margin-bottom: 32px; }
 
         .progress-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .progress-label {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 1.2px;
             color: #9ca3af;
@@ -173,13 +161,13 @@
         }
 
         .progress-count {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             font-weight: 700;
             color: #7C3AED;
         }
 
         .progress-bar {
-            height: 5px;
+            height: 6px;
             background: #e5e7eb;
             border-radius: 100px;
             overflow: hidden;
@@ -196,218 +184,135 @@
         .question-card {
             background: #fff;
             border: 1px solid #e5e7eb;
-            border-radius: 20px;
-            padding: 36px;
+            border-radius: 24px;
+            padding: 44px;
             animation: slideUp 0.4s ease;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+            box-shadow: 0 1px 4px rgba(0,0,0,0.04);
         }
 
         .question-type-badge {
             display: inline-block;
-            padding: 5px 12px;
+            padding: 6px 14px;
             border-radius: 8px;
-            font-size: 0.65rem;
+            font-size: 0.72rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.8px;
-            margin-bottom: 16px;
+            margin-bottom: 18px;
         }
 
-        .badge-planning { background: #ede9fe; color: #7c3aed; }
-        .badge-missions { background: #fce7f3; color: #db2777; }
-        .badge-outils { background: #e0f2fe; color: #0284c7; }
-        .badge-culture { background: #fef3c7; color: #d97706; }
-
-        /* Admin Panel */
-        .admin-panel {
-            animation: fadeIn 0.6s ease;
-        }
-
-        .admin-header {
-            text-align: center;
-            margin-bottom: 32px;
-        }
-
-        .admin-header h2 {
-            font-size: 1.4rem;
-            font-weight: 800;
-            color: #111827;
-            margin-bottom: 4px;
-        }
-
-        .admin-header p {
-            color: #9ca3af;
-            font-size: 0.85rem;
-        }
-
-        .admin-card {
-            background: #fff;
-            border: 1px solid #e5e7eb;
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 16px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-        }
-
-        .admin-card .ac-badge {
-            display: inline-block;
-            padding: 3px 10px;
-            border-radius: 6px;
-            font-size: 0.6rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            margin-bottom: 8px;
-        }
-
-        .admin-card .ac-question {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: #111827;
-            margin-bottom: 10px;
-            line-height: 1.4;
-        }
-
-        .admin-card .ac-answer {
-            font-size: 0.85rem;
-            color: #059669;
-            font-weight: 600;
-            padding: 8px 12px;
-            background: #ecfdf5;
-            border-radius: 8px;
-            border: 1px solid #a7f3d0;
-        }
-
-        .admin-card .ac-type {
-            font-size: 0.75rem;
-            color: #9ca3af;
-            margin-top: 8px;
-            font-style: italic;
-        }
-
-        .admin-no-responses {
-            text-align: center;
-            padding: 40px;
-            color: #9ca3af;
-            font-size: 0.9rem;
-        }
-
-        .admin-responses-list {
-            margin-top: 12px;
-        }
-
-        .admin-response-entry {
-            padding: 10px 12px;
-            background: #f3f0ff;
-            border-radius: 8px;
-            border: 1px solid #e0d8f8;
-            margin-top: 8px;
-        }
-
-        .admin-response-entry .are-name {
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: #7C3AED;
-            margin-bottom: 4px;
-        }
-
-        .admin-response-entry .are-text {
-            font-size: 0.85rem;
-            color: #4b5563;
-            font-style: italic;
-        }
-
-        .admin-response-entry .are-date {
-            font-size: 0.7rem;
-            color: #9ca3af;
-            margin-top: 4px;
-        }
-
-        .admin-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin-bottom: 24px;
-        }
-
-        .stat-card {
-            background: #fff;
-            border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 16px;
-            text-align: center;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-        }
-
-        .stat-card .stat-number {
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: #7C3AED;
-        }
-
-        .stat-card .stat-label {
-            font-size: 0.7rem;
-            color: #9ca3af;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 2px;
-        }
+        .badge-ia { background: #ede9fe; color: #7c3aed; }
+        .badge-prompting { background: #fef3c7; color: #d97706; }
+        .badge-html { background: #e0f2fe; color: #0284c7; }
+        .badge-css { background: #fce7f3; color: #db2777; }
+        .badge-code { background: #d1fae5; color: #059669; }
+        .badge-oop { background: #fff7ed; color: #ea580c; }
+        .badge-tech { background: #f0f9ff; color: #0369a1; }
+        .badge-reflexion { background: #faf5ff; color: #9333ea; }
 
         .question-number {
-            font-size: 0.72rem;
+            font-size: 0.8rem;
             color: #9ca3af;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             font-weight: 500;
         }
 
         .question-text {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             font-weight: 700;
             line-height: 1.45;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
             color: #111827;
             letter-spacing: -0.01em;
         }
 
-        /* Multiple Choice */
+        .question-context {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 24px;
+            font-size: 0.95rem;
+            color: #4b5563;
+            line-height: 1.6;
+        }
+
+        .question-context strong {
+            color: #111827;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: #1e1e2e;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 24px;
+            overflow-x: auto;
+        }
+
+        .code-block pre {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #cdd6f4;
+            margin: 0;
+        }
+
+        .code-block .tag { color: #f38ba8; }
+        .code-block .attr { color: #a6e3a1; }
+        .code-block .val { color: #f9e2af; }
+        .code-block .prop { color: #89b4fa; }
+        .code-block .sel { color: #cba6f7; }
+        .code-block .comment { color: #6c7086; font-style: italic; }
+
+        /* Options */
         .options-list {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 10px;
         }
 
         .option-btn {
             width: 100%;
-            padding: 14px 18px;
+            padding: 18px 22px;
             background: #f9fafb;
-            border: 1.5px solid #e5e7eb;
-            border-radius: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 14px;
             color: #374151;
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-family: 'Inter', sans-serif;
             cursor: pointer;
             transition: all 0.2s;
             text-align: left;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
+            line-height: 1.4;
         }
 
-        .option-btn:hover:not(.selected):not(.correct):not(.incorrect) {
+        .option-btn code {
+            font-family: 'Fira Code', monospace;
+            background: #eee;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .option-btn:hover:not(.correct):not(.incorrect) {
             background: #f3f0ff;
             border-color: #c4b5fd;
         }
 
         .option-letter {
-            width: 28px;
-            height: 28px;
-            border-radius: 8px;
+            width: 32px;
+            height: 32px;
+            border-radius: 10px;
             background: #e5e7eb;
             color: #6b7280;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.75rem;
+            font-size: 0.85rem;
             font-weight: 700;
             flex-shrink: 0;
             transition: all 0.2s;
@@ -419,10 +324,7 @@
             color: #065f46;
         }
 
-        .option-btn.correct .option-letter {
-            background: #34d399;
-            color: #fff;
-        }
+        .option-btn.correct .option-letter { background: #34d399; color: #fff; }
 
         .option-btn.incorrect {
             border-color: #f87171;
@@ -430,44 +332,40 @@
             color: #991b1b;
         }
 
-        .option-btn.incorrect .option-letter {
-            background: #f87171;
-            color: #fff;
-        }
+        .option-btn.incorrect .option-letter { background: #f87171; color: #fff; }
 
-        /* Text Input Questions */
+        /* Text Input */
         .text-input-area {
             width: 100%;
-            padding: 14px 18px;
+            padding: 18px 22px;
             background: #f9fafb;
-            border: 1.5px solid #e5e7eb;
-            border-radius: 12px;
+            border: 2px solid #e5e7eb;
+            border-radius: 14px;
             color: #111827;
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-family: 'Inter', sans-serif;
             resize: vertical;
-            min-height: 100px;
+            min-height: 120px;
             outline: none;
             transition: all 0.2s;
+            line-height: 1.6;
         }
 
         .text-input-area:focus {
             border-color: #7C3AED;
-            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+            box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
             background: #fff;
         }
 
-        .text-input-area::placeholder {
-            color: #c4c7cc;
-        }
+        .text-input-area::placeholder { color: #c4c7cc; }
 
         /* Feedback */
         .feedback {
-            margin-top: 16px;
-            padding: 14px 18px;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            line-height: 1.5;
+            margin-top: 20px;
+            padding: 18px 22px;
+            border-radius: 14px;
+            font-size: 0.95rem;
+            line-height: 1.6;
             animation: fadeIn 0.3s ease;
         }
 
@@ -491,13 +389,13 @@
 
         /* Buttons */
         .btn-next {
-            margin-top: 20px;
-            padding: 13px 28px;
+            margin-top: 24px;
+            padding: 16px 32px;
             background: #7C3AED;
             border: none;
-            border-radius: 12px;
+            border-radius: 14px;
             color: #fff;
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
@@ -507,21 +405,19 @@
 
         .btn-next:hover {
             background: #6d28d9;
-            box-shadow: 0 4px 16px rgba(124, 58, 237, 0.25);
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
         }
 
-        .btn-next.visible {
-            display: inline-block;
-        }
+        .btn-next.visible { display: inline-block; }
 
         .btn-submit-text {
-            margin-top: 14px;
-            padding: 13px 28px;
+            margin-top: 16px;
+            padding: 16px 32px;
             background: #7C3AED;
             border: none;
-            border-radius: 12px;
+            border-radius: 14px;
             color: #fff;
-            font-size: 0.9rem;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
@@ -530,78 +426,57 @@
 
         .btn-submit-text:hover {
             background: #6d28d9;
-            box-shadow: 0 4px 16px rgba(124, 58, 237, 0.25);
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
         }
 
         .btn-submit-text:disabled {
             opacity: 0.35;
             cursor: not-allowed;
             box-shadow: none;
-            background: #7C3AED;
         }
 
-        /* Results Screen */
+        /* Results */
         .results-screen {
             text-align: center;
             animation: fadeIn 0.6s ease;
         }
 
         .score-circle {
-            width: 160px;
-            height: 160px;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 28px;
+            margin: 0 auto 32px;
             background: #fff;
-            border: 3px solid #7C3AED;
-            box-shadow: 0 0 0 8px rgba(124, 58, 237, 0.08);
+            border: 4px solid #7C3AED;
+            box-shadow: 0 0 0 10px rgba(124, 58, 237, 0.08);
         }
 
-        .score-number {
-            font-size: 2.6rem;
-            font-weight: 800;
-            color: #7C3AED;
-        }
+        .score-number { font-size: 3rem; font-weight: 800; color: #7C3AED; }
+        .score-label { font-size: 0.9rem; color: #9ca3af; font-weight: 500; }
 
-        .score-label {
-            font-size: 0.8rem;
-            color: #9ca3af;
-            margin-top: 2px;
-            font-weight: 500;
-        }
-
-        .results-message {
-            font-size: 1.4rem;
-            font-weight: 800;
-            margin-bottom: 6px;
-            color: #111827;
-        }
-
-        .results-subtitle {
-            color: #6b7280;
-            font-size: 0.95rem;
-            margin-bottom: 36px;
-        }
+        .results-message { font-size: 1.6rem; font-weight: 800; margin-bottom: 8px; color: #111827; }
+        .results-subtitle { color: #6b7280; font-size: 1.05rem; margin-bottom: 40px; }
 
         .results-breakdown {
             background: #fff;
             border: 1px solid #e5e7eb;
             border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 24px;
+            padding: 28px;
+            margin-bottom: 28px;
             text-align: left;
             box-shadow: 0 1px 3px rgba(0,0,0,0.04);
         }
 
         .results-breakdown h3 {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             color: #9ca3af;
-            margin-bottom: 14px;
+            margin-bottom: 16px;
             font-weight: 600;
         }
 
@@ -609,27 +484,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 9px 0;
+            padding: 11px 0;
             border-bottom: 1px solid #f3f4f6;
         }
 
-        .breakdown-item:last-child {
-            border-bottom: none;
-        }
-
-        .breakdown-item .q-text {
-            font-size: 0.85rem;
-            color: #6b7280;
-            flex: 1;
-            margin-right: 16px;
-        }
-
-        .breakdown-item .q-result {
-            font-size: 0.8rem;
-            font-weight: 700;
-            flex-shrink: 0;
-        }
-
+        .breakdown-item:last-child { border-bottom: none; }
+        .breakdown-item .q-text { font-size: 0.95rem; color: #6b7280; flex: 1; margin-right: 16px; }
+        .breakdown-item .q-result { font-size: 0.9rem; font-weight: 700; flex-shrink: 0; }
         .breakdown-item .q-result.pass { color: #059669; }
         .breakdown-item .q-result.fail { color: #dc2626; }
         .breakdown-item .q-result.text { color: #7C3AED; }
@@ -638,51 +499,33 @@
             background: #fff;
             border: 1px solid #e5e7eb;
             border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 24px;
+            padding: 28px;
+            margin-bottom: 28px;
             text-align: left;
             box-shadow: 0 1px 3px rgba(0,0,0,0.04);
         }
 
         .text-answers-section h3 {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             color: #9ca3af;
-            margin-bottom: 14px;
+            margin-bottom: 16px;
             font-weight: 600;
         }
 
-        .text-answer-item {
-            padding: 14px 0;
-            border-bottom: 1px solid #f3f4f6;
-        }
-
-        .text-answer-item:last-child {
-            border-bottom: none;
-        }
-
-        .text-answer-item .ta-question {
-            font-size: 0.8rem;
-            color: #7C3AED;
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-
-        .text-answer-item .ta-response {
-            font-size: 0.85rem;
-            color: #4b5563;
-            line-height: 1.5;
-            font-style: italic;
-        }
+        .text-answer-item { padding: 16px 0; border-bottom: 1px solid #f3f4f6; }
+        .text-answer-item:last-child { border-bottom: none; }
+        .text-answer-item .ta-question { font-size: 0.9rem; color: #7C3AED; font-weight: 600; margin-bottom: 6px; }
+        .text-answer-item .ta-response { font-size: 0.95rem; color: #4b5563; line-height: 1.6; font-style: italic; }
 
         .btn-retry {
-            padding: 13px 36px;
+            padding: 16px 40px;
             background: #7C3AED;
             border: none;
-            border-radius: 12px;
+            border-radius: 14px;
             color: #fff;
-            font-size: 0.95rem;
+            font-size: 1.05rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.2s;
@@ -691,57 +534,119 @@
 
         .btn-retry:hover {
             background: #6d28d9;
-            box-shadow: 0 4px 16px rgba(124, 58, 237, 0.25);
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.3);
         }
+
+        /* Admin */
+        .admin-panel { animation: fadeIn 0.6s ease; }
+        .admin-header { text-align: center; margin-bottom: 32px; }
+        .admin-header h2 { font-size: 1.6rem; font-weight: 800; color: #111827; margin-bottom: 4px; }
+        .admin-header p { color: #9ca3af; font-size: 0.95rem; }
+
+        .admin-card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+
+        .admin-card .ac-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 8px;
+        }
+
+        .admin-card .ac-question { font-size: 1rem; font-weight: 700; color: #111827; margin-bottom: 10px; line-height: 1.4; }
+
+        .admin-card .ac-answer {
+            font-size: 0.9rem;
+            color: #059669;
+            font-weight: 600;
+            padding: 10px 14px;
+            background: #ecfdf5;
+            border-radius: 10px;
+            border: 1px solid #a7f3d0;
+        }
+
+        .admin-card .ac-type { font-size: 0.8rem; color: #9ca3af; margin-top: 8px; font-style: italic; }
+
+        .admin-responses-list { margin-top: 12px; }
+
+        .admin-response-entry {
+            padding: 10px 14px;
+            background: #f3f0ff;
+            border-radius: 10px;
+            border: 1px solid #e0d8f8;
+            margin-top: 8px;
+        }
+
+        .admin-response-entry .are-name { font-size: 0.8rem; font-weight: 700; color: #7C3AED; margin-bottom: 4px; }
+        .admin-response-entry .are-text { font-size: 0.9rem; color: #4b5563; font-style: italic; }
+        .admin-response-entry .are-date { font-size: 0.75rem; color: #9ca3af; margin-top: 4px; }
+
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+
+        .stat-card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+
+        .stat-card .stat-number { font-size: 1.8rem; font-weight: 800; color: #7C3AED; }
+        .stat-card .stat-label { font-size: 0.75rem; color: #9ca3af; text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
 
         /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(16px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 
         .hidden { display: none; }
 
-        /* Mobile */
-        @media (max-width: 600px) {
-            .container { padding: 28px 16px; }
-            .question-card { padding: 24px; }
-            .welcome-screen h1 { font-size: 1.6rem; }
-            .question-text { font-size: 1.05rem; }
+        @media (max-width: 640px) {
+            .container { padding: 24px 16px; }
+            .question-card { padding: 28px 20px; }
+            .welcome-screen h1 { font-size: 1.8rem; }
+            .question-text { font-size: 1.15rem; }
             .name-input-group { flex-direction: column; }
+            .admin-stats { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Welcome -->
         <div id="welcome" class="welcome-screen">
             <div class="logo-mark">&#x1F98B;</div>
             <h1>Quiz Semaine 1</h1>
-            <p class="subtitle">Teste tes connaissances : IA, prompting, HTML, CSS, OOP et culture tech.</p>
-
+            <p class="subtitle">Teste tes connaissances : IA, prompting, HTML, CSS, code et culture tech.</p>
             <div class="rules">
                 <h3>Regles du jeu</h3>
                 <ul>
                     <li><span>15</span> questions au total</li>
-                    <li><span>QCM</span> + questions ouvertes</li>
+                    <li><span>QCM</span> + questions ouvertes + code</li>
                     <li><span>Score</span> calcule sur les QCM</li>
                     <li><span>Honnetete</span> &mdash; pas de triche, c'est pour toi</li>
                 </ul>
             </div>
-
             <div class="name-input-group">
                 <input type="text" id="nameInput" placeholder="Ton prenom..." autocomplete="off">
                 <button class="btn-primary" id="btnStart" disabled>C'est parti</button>
             </div>
         </div>
 
-        <!-- Quiz -->
         <div id="quiz" class="hidden">
             <div class="progress-container">
                 <div class="progress-header">
@@ -755,196 +660,209 @@
             <div id="questionContainer"></div>
         </div>
 
-        <!-- Results -->
         <div id="results" class="results-screen hidden"></div>
-
-        <!-- Admin -->
         <div id="admin" class="admin-panel hidden"></div>
     </div>
 
     <script>
+        const QUIZ_VERSION = "v3";
+        localStorage.removeItem("quiz_results");
+
         const questions = [
             {
                 type: "mcq",
-                category: "culture",
+                category: "ia",
                 badge: "IA",
-                question: "Qu'est-ce qu'un agent IA ?",
+                question: "Un agent IA peut naviguer sur le web, envoyer des emails et modifier des fichiers tout seul. Comment appelle-t-on cette capacité ?",
                 options: [
-                    "Un robot physique qui se déplace",
-                    "Un programme qui peut prendre des décisions et agir de manière autonome pour atteindre un objectif",
-                    "Un chatbot qui répond uniquement à des questions",
-                    "Un antivirus intelligent"
+                    "Le machine learning",
+                    "L'utilisation d'outils (tool use) — l'agent appelle des APIs et services externes",
+                    "Le deep learning",
+                    "Le natural language processing (NLP)"
                 ],
                 correct: 1,
-                explanation: "Un agent IA peut percevoir, décider et agir de façon autonome — il ne se contente pas de répondre, il exécute des tâches."
+                explanation: "Le 'tool use' permet à un agent d'agir sur le monde réel en appelant des outils externes — c'est ce qui le distingue d'un simple chatbot."
             },
             {
                 type: "mcq",
-                category: "culture",
+                category: "ia",
                 badge: "IA",
-                question: "Quelle est la différence entre un chatbot classique et un agent IA ?",
+                question: "Tu veux qu'un agent IA surveille les prix d'un concurrent et t'alerte quand ils changent. Quel est le principal avantage par rapport à un humain qui fait cette tâche ?",
                 options: [
-                    "Il n'y a aucune différence",
-                    "Le chatbot est plus intelligent",
-                    "L'agent peut utiliser des outils, naviguer sur le web, et enchaîner des actions tout seul",
-                    "L'agent fonctionne uniquement hors ligne"
+                    "L'agent est plus créatif que l'humain",
+                    "L'agent coûte moins cher à embaucher",
+                    "L'agent peut tourner 24h/24 sans fatigue et réagir en temps réel",
+                    "L'agent comprend mieux la stratégie business"
                 ],
                 correct: 2,
-                explanation: "Un agent IA a accès à des outils (recherche web, APIs, fichiers) et peut enchaîner des étapes sans qu'on lui dise chaque action."
+                explanation: "L'agent excelle sur les tâches répétitives et continues — il ne dort pas, ne se fatigue pas, et peut traiter des données en permanence. Mais la stratégie reste humaine."
+            },
+            {
+                type: "mcq",
+                category: "prompting",
+                badge: "Prompting",
+                question: "Tu écris ce prompt : 'Fais-moi un résumé de cet article'. L'IA te renvoie un résumé trop long et trop technique. Quelle est la meilleure correction ?",
+                options: [
+                    "Ajouter 'fais mieux' à la fin",
+                    "Réécrire : 'Résume cet article en 3 bullet points, niveau lycéen, max 80 mots'",
+                    "Changer de modèle d'IA",
+                    "Recommencer exactement le même prompt"
+                ],
+                correct: 1,
+                explanation: "Préciser le format (bullet points), le niveau de langue (lycéen) et la longueur (80 mots) guide l'IA vers exactement ce que tu veux."
+            },
+            {
+                type: "mcq",
+                category: "prompting",
+                badge: "Prompting",
+                question: "Quelle technique de prompting consiste à montrer des exemples à l'IA avant de lui poser ta vraie question ?",
+                options: [
+                    "Le zero-shot prompting",
+                    "Le chain-of-thought",
+                    "Le few-shot prompting — on donne 2-3 exemples du résultat attendu",
+                    "Le prompt engineering basique"
+                ],
+                correct: 2,
+                explanation: "Few-shot = tu montres des exemples (input → output attendu) pour que l'IA comprenne le pattern avant de traiter ton cas."
             },
             {
                 type: "text",
-                category: "culture",
-                badge: "IA",
-                question: "Donne un exemple concret d'agent IA dans le monde réel. Qu'est-ce qu'il fait et pourquoi c'est utile ?",
-                placeholder: "Un exemple d'agent IA serait..."
+                category: "prompting",
+                badge: "Prompting",
+                question: "Écris un prompt few-shot pour demander à une IA de transformer des phrases formelles en phrases décontractées.",
+                context: "Le <strong>few-shot prompting</strong> c'est donner 2-3 exemples avant ta vraie demande. Par exemple :<br><br>Exemple 1 : 'Le chat dort' → 'Un chat qui fait dodo'<br>Exemple 2 : 'Il pleut dehors' → 'Ça flotte là'<br><br>Maintenant transforme : 'Le rapport est terminé'",
+                placeholder: "Mon prompt few-shot :\n\nExemple 1 : ...\nExemple 2 : ...\n\nMaintenant transforme : ..."
             },
             {
                 type: "mcq",
-                category: "culture",
-                badge: "Prompting",
-                question: "C'est quoi un prompt ?",
-                options: [
-                    "Un langage de programmation",
-                    "L'instruction ou la question que tu donnes à une IA pour obtenir un résultat",
-                    "Le nom d'un logiciel d'IA",
-                    "Une base de données"
-                ],
-                correct: 1,
-                explanation: "Le prompt c'est ce que tu écris à l'IA. La qualité de ta réponse dépend directement de la qualité de ton prompt."
-            },
-            {
-                type: "mcq",
-                category: "culture",
-                badge: "Prompting",
-                question: "Quel prompt va donner le meilleur résultat ?",
-                options: [
-                    "\"Fais-moi un truc sur le marketing\"",
-                    "\"Écris un post LinkedIn de 150 mots pour une agence digitale, ton professionnel mais accessible, avec un hook accrocheur et un CTA\"",
-                    "\"Marketing digital\"",
-                    "\"Aide-moi s'il te plaît\""
-                ],
-                correct: 1,
-                explanation: "Plus ton prompt est précis (contexte, format, ton, longueur), meilleur sera le résultat. Un prompt vague = une réponse vague."
-            },
-            {
-                type: "text",
-                category: "culture",
-                badge: "Prompting",
-                question: "Écris un prompt pour demander à une IA de créer un email professionnel. Sois le plus précis possible.",
-                placeholder: "Mon prompt : ..."
-            },
-            {
-                type: "mcq",
-                category: "outils",
+                category: "html",
                 badge: "HTML",
-                question: "Qu'est-ce que le HTML ?",
+                question: "Tu veux afficher une image sur ta page web. Quelle balise utilises-tu ?",
                 options: [
-                    "Un langage de programmation pour créer des applications",
-                    "Le langage qui structure le contenu d'une page web (texte, images, liens)",
-                    "Un outil de design graphique",
-                    "Un protocole de sécurité internet"
+                    "<code>&lt;picture src=\"photo.jpg\"&gt;</code>",
+                    "<code>&lt;img src=\"photo.jpg\" alt=\"description\"&gt;</code>",
+                    "<code>&lt;image href=\"photo.jpg\"&gt;</code>",
+                    "<code>&lt;src img=\"photo.jpg\"&gt;</code>"
                 ],
                 correct: 1,
-                explanation: "HTML = HyperText Markup Language. Il structure le contenu : titres, paragraphes, images, liens. C'est le squelette d'une page web."
+                explanation: "La balise <img> avec l'attribut src (source) et alt (texte alternatif pour l'accessibilité). C'est une balise auto-fermante, pas besoin de </img>."
             },
             {
                 type: "mcq",
-                category: "outils",
-                badge: "HTML",
-                question: "À quoi sert la balise <a> en HTML ?",
+                category: "code",
+                badge: "Code",
+                question: "Voici du HTML. Quel CSS permet de mettre le titre en bleu ?",
+                codeBlock: '<span class="tag">&lt;h1</span> <span class="attr">class</span>=<span class="val">"titre"</span><span class="tag">&gt;</span>Bienvenue<span class="tag">&lt;/h1&gt;</span>',
                 options: [
-                    "Afficher une image",
-                    "Créer un lien cliquable vers une autre page",
-                    "Mettre du texte en gras",
-                    "Ajouter une vidéo"
+                    "<code>h1 { text-color: blue; }</code>",
+                    "<code>.titre { color: blue; }</code>",
+                    "<code>#titre { font-color: blue; }</code>",
+                    "<code>titre { background: blue; }</code>"
                 ],
                 correct: 1,
-                explanation: "<a href='url'>texte</a> crée un lien hypertexte. C'est ce qui permet de naviguer d'une page à une autre."
+                explanation: ".titre cible la class='titre', et color change la couleur du texte. text-color et font-color n'existent pas en CSS."
             },
             {
                 type: "mcq",
-                category: "outils",
-                badge: "CSS",
-                question: "Si HTML est le squelette d'une page web, le CSS c'est quoi ?",
+                category: "code",
+                badge: "Code",
+                question: "Tu veux centrer ce bouton horizontalement sur la page. Quel CSS est correct ?",
+                codeBlock: '<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="val">"container"</span><span class="tag">&gt;</span>\n  <span class="tag">&lt;button</span> <span class="attr">class</span>=<span class="val">"btn"</span><span class="tag">&gt;</span>Cliquer<span class="tag">&lt;/button&gt;</span>\n<span class="tag">&lt;/div&gt;</span>',
                 options: [
-                    "Le cerveau (la logique)",
-                    "Le design : couleurs, tailles, espacements, mise en page",
-                    "La base de données",
-                    "Le serveur"
+                    "<code>.container { text-align: center; }</code>",
+                    "<code>.btn { position: center; }</code>",
+                    "<code>.container { align: middle; }</code>",
+                    "<code>.btn { margin: center; }</code>"
                 ],
-                correct: 1,
-                explanation: "CSS = Cascading Style Sheets. Il gère tout le visuel : couleurs, polices, tailles, animations, responsive design."
+                correct: 0,
+                explanation: "text-align: center sur le parent centre les éléments inline (comme un bouton). position: center et align: middle n'existent pas en CSS."
             },
             {
                 type: "mcq",
-                category: "culture",
+                category: "code",
+                badge: "Code",
+                question: "Ce code CSS ne fonctionne pas. Pourquoi ?",
+                codeBlock: '<span class="sel">.card</span> {\n  <span class="prop">background-color</span>: <span class="val">#ffffff</span>\n  <span class="prop">border-radius</span>: <span class="val">12px</span>;\n  <span class="prop">padding</span>: <span class="val">20px</span>;\n}',
+                options: [
+                    "Il manque les guillemets autour de #ffffff",
+                    "border-radius n'accepte pas les px",
+                    "Il manque un point-virgule après #ffffff (ligne 2)",
+                    "padding ne peut pas être en px"
+                ],
+                correct: 2,
+                explanation: "Chaque propriété CSS doit finir par un point-virgule (;). Sans le ; après #ffffff, le navigateur ne sait pas où finit la valeur et tout le bloc plante."
+            },
+            {
+                type: "mcq",
+                category: "oop",
                 badge: "OOP",
-                question: "La Programmation Orientée Objet (OOP), c'est quoi le principe de base ?",
+                question: "En OOP, quelle est la différence entre une 'classe' et un 'objet' ?",
                 options: [
-                    "Écrire du code ligne par ligne sans structure",
-                    "Organiser le code en 'objets' qui ont des propriétés et des actions, comme dans le monde réel",
-                    "Programmer uniquement avec des chiffres",
-                    "Un type de design web"
+                    "C'est la même chose, deux noms différents",
+                    "La classe est le plan/modèle, l'objet est une instance concrète créée à partir de ce plan",
+                    "L'objet est le plan, la classe est l'instance",
+                    "La classe contient uniquement des données, l'objet uniquement des actions"
                 ],
                 correct: 1,
-                explanation: "En OOP, on modélise le monde réel : un objet 'Voiture' a des propriétés (couleur, vitesse) et des actions (démarrer, freiner)."
+                explanation: "Classe = le plan d'architecte. Objet = la maison construite à partir du plan. Tu peux créer plusieurs maisons (objets) différentes à partir du même plan (classe)."
             },
             {
                 type: "text",
-                category: "culture",
+                category: "oop",
                 badge: "OOP",
-                question: "Imagine un objet 'Téléphone' en OOP. Liste 3 propriétés (caractéristiques) et 2 méthodes (actions) qu'il pourrait avoir.",
-                placeholder: "Propriétés : ...\nMéthodes : ..."
+                question: "Imagine que tu dois modéliser un objet 'Playlist' pour Spotify en OOP. Quelles seraient ses propriétés et ses méthodes ?",
+                context: "En OOP, un objet a des <strong>propriétés</strong> (ses données/caractéristiques) et des <strong>méthodes</strong> (ses actions/fonctions). Par exemple, un objet 'Voiture' aurait :<br><br><strong>Propriétés :</strong> marque, couleur, vitesseActuelle, niveauEssence<br><strong>Méthodes :</strong> demarrer(), accelerer(), freiner(), klaxonner()",
+                placeholder: "Objet Playlist :\n\nPropriétés (min 3) :\n- ...\n\nMéthodes (min 3) :\n- ..."
             },
             {
                 type: "mcq",
-                category: "culture",
+                category: "tech",
                 badge: "Tech",
-                question: "Qu'est-ce qu'une API ?",
+                question: "Tu utilises une API pour récupérer la météo. Que se passe-t-il concrètement quand tu fais un appel API ?",
                 options: [
-                    "Un type de câble internet",
-                    "Un pont qui permet à deux logiciels de communiquer entre eux",
-                    "Un langage de programmation",
-                    "Un réseau social"
+                    "Tu télécharges l'application météo sur ton serveur",
+                    "Ton code envoie une requête HTTP à un serveur distant qui te renvoie les données (souvent en JSON)",
+                    "Tu te connectes directement à la base de données du service météo",
+                    "Tu copie-colles les données depuis leur site web"
                 ],
                 correct: 1,
-                explanation: "API = Application Programming Interface. C'est comme un serveur au restaurant : tu passes ta commande (requête), il va en cuisine (serveur), et te ramène ton plat (réponse)."
+                explanation: "Une API fonctionne en requête/réponse : ton code envoie une requête HTTP (GET, POST...) → le serveur traite → il renvoie des données structurées (JSON)."
             },
             {
                 type: "mcq",
-                category: "culture",
+                category: "tech",
                 badge: "Tech",
-                question: "Le 'scraping' de données, c'est quoi ?",
+                question: "Le scraping et l'utilisation d'une API permettent tous les deux de récupérer des données. Quelle est la différence principale ?",
                 options: [
-                    "Supprimer des données d'un site web",
-                    "Extraire automatiquement des informations depuis des pages web",
-                    "Créer un site web à partir de zéro",
-                    "Envoyer des emails en masse"
+                    "Le scraping est toujours illégal, l'API toujours légale",
+                    "L'API te donne des données structurées et autorisées, le scraping extrait des données depuis le HTML d'une page (pas toujours autorisé)",
+                    "Il n'y a aucune différence technique",
+                    "Le scraping est plus rapide que l'API"
                 ],
                 correct: 1,
-                explanation: "Le scraping permet de collecter automatiquement des données sur des sites web — exactement ce que tu vas faire pour NRF Europe 2026."
+                explanation: "L'API est un accès officiel et structuré. Le scraping 'gratte' le HTML brut — c'est utile quand il n'y a pas d'API, mais il faut vérifier les conditions d'utilisation du site."
             },
             {
                 type: "mcq",
-                category: "culture",
+                category: "ia",
                 badge: "IA",
-                question: "Pourquoi l'IA ne remplace pas un humain dans un projet créatif ?",
+                question: "Un collègue dit : 'L'IA va remplacer tous les développeurs d'ici 2 ans.' Quelle est la réponse la plus nuancée ?",
                 options: [
-                    "L'IA est trop lente",
-                    "L'IA génère du contenu mais n'a pas de vision stratégique, de goût, ni de compréhension du contexte client",
-                    "L'IA n'existe pas encore vraiment",
-                    "L'IA ne peut créer que du texte"
+                    "C'est vrai, l'IA code déjà mieux que les humains",
+                    "C'est faux, l'IA ne sait pas coder du tout",
+                    "L'IA accélère le travail des développeurs mais ne remplace pas la compréhension du problème, l'architecture et les décisions business",
+                    "Ça dépend uniquement du langage de programmation utilisé"
                 ],
-                correct: 1,
-                explanation: "L'IA est un outil puissant mais c'est l'humain qui donne la direction, valide la qualité, et comprend les enjeux business."
+                correct: 2,
+                explanation: "L'IA est un accélérateur, pas un remplaçant. Elle génère du code, mais comprendre le besoin client, concevoir l'architecture et prendre des décisions stratégiques reste humain."
             },
             {
                 type: "text",
-                category: "culture",
-                badge: "Réflexion",
-                question: "D'après tout ce que tu as appris cette semaine, comment l'IA pourrait t'aider concrètement dans ton travail au quotidien ? Donne 2 exemples précis.",
-                placeholder: "L'IA pourrait m'aider à..."
+                category: "reflexion",
+                badge: "Reflexion",
+                question: "Tu dois créer un outil IA pour automatiser une tâche répétitive de l'agence. Décris le projet : quelle tâche, quel outil IA, et comment ça fonctionnerait étape par étape.",
+                context: "Pense à une tâche que tu as vue cette semaine qui prend du temps et qui pourrait être automatisée (ex: veille concurrentielle, tri d'emails, génération de rapports, création de contenus, suivi des réseaux sociaux...). Décris ton idée comme si tu la présentais à ton manager.",
+                placeholder: "Tâche à automatiser : ...\n\nOutil IA utilisé : ...\n\nComment ça fonctionne :\n1. ...\n2. ...\n3. ...\n\nPourquoi c'est utile : ..."
             }
         ];
 
@@ -985,108 +903,55 @@
             adminDiv.classList.remove("hidden");
 
             const allResults = JSON.parse(localStorage.getItem("quiz_results") || "[]");
-
             const totalParticipants = allResults.length;
             const avgScore = totalParticipants > 0
-                ? Math.round(allResults.reduce((s, r) => s + (r.score / r.mcqCount) * 100, 0) / totalParticipants)
-                : 0;
+                ? Math.round(allResults.reduce((s, r) => s + (r.score / r.mcqCount) * 100, 0) / totalParticipants) : 0;
             const bestScore = totalParticipants > 0
-                ? Math.round(Math.max(...allResults.map(r => (r.score / r.mcqCount) * 100)))
-                : 0;
+                ? Math.round(Math.max(...allResults.map(r => (r.score / r.mcqCount) * 100))) : 0;
+
+            const badgeMap = { ia: "badge-ia", prompting: "badge-prompting", html: "badge-html", css: "badge-css", code: "badge-code", oop: "badge-oop", tech: "badge-tech", reflexion: "badge-reflexion" };
 
             const answersHTML = questions.map((q, qi) => {
-                const badgeClass = {
-                    planning: "badge-planning",
-                    missions: "badge-missions",
-                    outils: "badge-outils",
-                    culture: "badge-culture"
-                }[q.category] || "badge-culture";
-
+                const bc = badgeMap[q.category] || "badge-ia";
                 if (q.type === "mcq") {
                     const letters = ["A", "B", "C", "D"];
-                    return `
-                        <div class="admin-card">
-                            <span class="ac-badge ${badgeClass}">${q.badge}</span>
-                            <div class="ac-question">Q${qi + 1}. ${q.question}</div>
-                            <div class="ac-answer">${letters[q.correct]}. ${q.options[q.correct]}</div>
-                            ${getResponsesForQuestion(allResults, qi, "mcq")}
-                        </div>
-                    `;
+                    const cleanAnswer = q.options[q.correct].replace(/<code>|<\/code>/g, '');
+                    return `<div class="admin-card"><span class="ac-badge ${bc}">${q.badge}</span><div class="ac-question">Q${qi+1}. ${q.question}</div><div class="ac-answer">${letters[q.correct]}. ${cleanAnswer}</div>${getResponsesForQuestion(allResults, qi, "mcq")}</div>`;
                 } else {
-                    return `
-                        <div class="admin-card">
-                            <span class="ac-badge ${badgeClass}">${q.badge}</span>
-                            <div class="ac-question">Q${qi + 1}. ${q.question}</div>
-                            <div class="ac-type">Question ouverte — réponses ci-dessous</div>
-                            ${getResponsesForQuestion(allResults, qi, "text")}
-                        </div>
-                    `;
+                    return `<div class="admin-card"><span class="ac-badge ${bc}">${q.badge}</span><div class="ac-question">Q${qi+1}. ${q.question}</div><div class="ac-type">Question ouverte</div>${getResponsesForQuestion(allResults, qi, "text")}</div>`;
                 }
             }).join("");
 
             adminDiv.innerHTML = `
-                <div class="admin-header">
-                    <h2>Panel Admin</h2>
-                    <p>Réponses correctes + résultats des participants</p>
-                </div>
-
+                <div class="admin-header"><h2>Panel Admin</h2><p>Réponses correctes + résultats des participants</p></div>
                 <div class="admin-stats">
-                    <div class="stat-card">
-                        <div class="stat-number">${totalParticipants}</div>
-                        <div class="stat-label">Participants</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">${avgScore}%</div>
-                        <div class="stat-label">Moyenne</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">${bestScore}%</div>
-                        <div class="stat-label">Meilleur</div>
-                    </div>
+                    <div class="stat-card"><div class="stat-number">${totalParticipants}</div><div class="stat-label">Participants</div></div>
+                    <div class="stat-card"><div class="stat-number">${avgScore}%</div><div class="stat-label">Moyenne</div></div>
+                    <div class="stat-card"><div class="stat-number">${bestScore}%</div><div class="stat-label">Meilleur</div></div>
                 </div>
-
                 ${answersHTML}
-
-                <div style="text-align: center; margin-top: 24px;">
-                    <button class="btn-retry" onclick="location.reload()">Retour</button>
-                </div>
+                <div style="text-align:center;margin-top:24px;"><button class="btn-retry" onclick="location.reload()">Retour</button></div>
             `;
         }
 
         function getResponsesForQuestion(allResults, qIndex, type) {
             if (allResults.length === 0) return '';
-
-            const responses = allResults
-                .filter(r => r.answers[qIndex])
-                .map(r => ({ name: r.name, date: r.date, answer: r.answers[qIndex] }));
-
+            const responses = allResults.filter(r => r.answers[qIndex]).map(r => ({ name: r.name, date: r.date, answer: r.answers[qIndex] }));
             if (responses.length === 0) return '';
-
             if (type === "mcq") {
-                const html = responses.map(r => {
+                return `<div class="admin-responses-list">${responses.map(r => {
                     const icon = r.answer.correct ? '✓' : '✗';
                     const color = r.answer.correct ? '#059669' : '#dc2626';
-                    return `<div style="font-size:0.8rem;color:${color};padding:4px 0;"><strong>${r.name}</strong> — ${icon} ${r.answer.selected} <span style="color:#9ca3af;font-size:0.7rem;">${r.date}</span></div>`;
-                }).join("");
-                return `<div class="admin-responses-list">${html}</div>`;
+                    return `<div style="font-size:0.85rem;color:${color};padding:4px 0;"><strong>${r.name}</strong> — ${icon} ${r.answer.selected.replace(/<code>|<\/code>/g,'')} <span style="color:#9ca3af;font-size:0.75rem;">${r.date}</span></div>`;
+                }).join("")}</div>`;
             } else {
-                const html = responses.map(r => `
-                    <div class="admin-response-entry">
-                        <div class="are-name">${r.name}</div>
-                        <div class="are-text">"${r.answer.response}"</div>
-                        <div class="are-date">${r.date}</div>
-                    </div>
-                `).join("");
-                return `<div class="admin-responses-list">${html}</div>`;
+                return `<div class="admin-responses-list">${responses.map(r => `<div class="admin-response-entry"><div class="are-name">${r.name}</div><div class="are-text">"${r.answer.response}"</div><div class="are-date">${r.date}</div></div>`).join("")}</div>`;
             }
         }
 
         function startQuiz() {
             userName = nameInput.value.trim();
-            if (userName.toLowerCase() === ADMIN_PASSWORD) {
-                showAdmin();
-                return;
-            }
+            if (userName.toLowerCase() === ADMIN_PASSWORD) { showAdmin(); return; }
             document.getElementById("welcome").classList.add("hidden");
             document.getElementById("quiz").classList.remove("hidden");
             showQuestion();
@@ -1095,23 +960,24 @@
         function showQuestion() {
             const q = questions[currentQuestion];
             const container = document.getElementById("questionContainer");
-            const badgeClass = {
-                planning: "badge-planning",
-                missions: "badge-missions",
-                outils: "badge-outils",
-                culture: "badge-culture"
-            }[q.category] || "badge-culture";
+            const badgeMap = { ia: "badge-ia", prompting: "badge-prompting", html: "badge-html", css: "badge-css", code: "badge-code", oop: "badge-oop", tech: "badge-tech", reflexion: "badge-reflexion" };
+            const bc = badgeMap[q.category] || "badge-ia";
 
             document.getElementById("progressCount").textContent = `${currentQuestion + 1} / ${questions.length}`;
             document.getElementById("progressFill").style.width = `${((currentQuestion + 1) / questions.length) * 100}%`;
+
+            const contextHTML = q.context ? `<div class="question-context">${q.context}</div>` : '';
+            const codeHTML = q.codeBlock ? `<div class="code-block"><pre>${q.codeBlock}</pre></div>` : '';
 
             if (q.type === "mcq") {
                 const letters = ["A", "B", "C", "D"];
                 container.innerHTML = `
                     <div class="question-card">
-                        <span class="question-type-badge ${badgeClass}">${q.badge}</span>
+                        <span class="question-type-badge ${bc}">${q.badge}</span>
                         <div class="question-number">Question ${currentQuestion + 1} sur ${questions.length}</div>
                         <div class="question-text">${q.question}</div>
+                        ${contextHTML}
+                        ${codeHTML}
                         <div class="options-list">
                             ${q.options.map((opt, i) => `
                                 <button class="option-btn" data-index="${i}" onclick="selectOption(this, ${i})">
@@ -1127,11 +993,13 @@
             } else {
                 container.innerHTML = `
                     <div class="question-card">
-                        <span class="question-type-badge ${badgeClass}">${q.badge}</span>
+                        <span class="question-type-badge ${bc}">${q.badge}</span>
                         <div class="question-number">Question ${currentQuestion + 1} sur ${questions.length}</div>
                         <div class="question-text">${q.question}</div>
-                        <textarea class="text-input-area" id="textAnswer" placeholder="${q.placeholder || 'Écris ta réponse ici...'}" rows="4"></textarea>
-                        <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                        ${contextHTML}
+                        ${codeHTML}
+                        <textarea class="text-input-area" id="textAnswer" placeholder="${q.placeholder || 'Écris ta réponse ici...'}" rows="5"></textarea>
+                        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
                             <button class="btn-submit-text" id="btnSubmitText" onclick="submitText()">Valider</button>
                             <button class="btn-next" id="btnNext" onclick="nextQuestion()">Suivante &rarr;</button>
                         </div>
@@ -1147,142 +1015,63 @@
 
         function selectOption(btn, index) {
             const q = questions[currentQuestion];
-            const allBtns = document.querySelectorAll(".option-btn");
-            const isCorrect = index === q.correct;
-
-            allBtns.forEach(b => {
+            document.querySelectorAll(".option-btn").forEach(b => {
                 b.style.pointerEvents = "none";
                 const i = parseInt(b.dataset.index);
                 if (i === q.correct) b.classList.add("correct");
-                if (i === index && !isCorrect) b.classList.add("incorrect");
+                if (i === index && index !== q.correct) b.classList.add("incorrect");
             });
-
-            if (isCorrect) score++;
-
-            answers.push({
-                question: q.question,
-                type: "mcq",
-                correct: isCorrect,
-                selected: q.options[index],
-                correctAnswer: q.options[q.correct]
-            });
-
+            if (index === q.correct) score++;
+            answers.push({ question: q.question, type: "mcq", correct: index === q.correct, selected: q.options[index], correctAnswer: q.options[q.correct] });
             const feedback = document.getElementById("feedback");
             feedback.classList.remove("hidden");
-            feedback.className = `feedback ${isCorrect ? "correct" : "incorrect"}`;
-            feedback.textContent = isCorrect
-                ? `✓ Correct ! ${q.explanation}`
-                : `✗ Pas tout à fait. ${q.explanation}`;
-
+            feedback.className = `feedback ${index === q.correct ? "correct" : "incorrect"}`;
+            feedback.textContent = index === q.correct ? `✓ Correct ! ${q.explanation}` : `✗ Pas tout à fait. ${q.explanation}`;
             document.getElementById("btnNext").classList.add("visible");
         }
 
         function submitText() {
-            const q = questions[currentQuestion];
             const text = document.getElementById("textAnswer").value.trim();
-
             if (!text) return;
-
             document.getElementById("textAnswer").disabled = true;
             document.getElementById("btnSubmitText").style.display = "none";
-
-            answers.push({
-                question: q.question,
-                type: "text",
-                response: text
-            });
-
+            answers.push({ question: questions[currentQuestion].question, type: "text", response: text });
             const feedback = document.getElementById("feedback");
             feedback.classList.remove("hidden");
             feedback.className = "feedback info";
-            feedback.textContent = "📝 Réponse enregistrée. Elle sera revue par ton manager.";
-
+            feedback.textContent = "Réponse enregistrée. Elle sera revue par ton manager.";
             document.getElementById("btnNext").classList.add("visible");
         }
 
         function nextQuestion() {
             currentQuestion++;
-            if (currentQuestion >= questions.length) {
-                showResults();
-            } else {
-                showQuestion();
-            }
+            if (currentQuestion >= questions.length) showResults();
+            else showQuestion();
         }
 
         function showResults() {
             document.getElementById("quiz").classList.add("hidden");
             const resultsDiv = document.getElementById("results");
             resultsDiv.classList.remove("hidden");
-
             const mcqCount = answers.filter(a => a.type === "mcq").length;
-            const percentage = Math.round((score / mcqCount) * 100);
-
+            const pct = Math.round((score / mcqCount) * 100);
             let message, subtitle;
-            if (percentage >= 90) {
-                message = "Exceptionnel !";
-                subtitle = "Tu as tout retenu, impressionnant pour une première semaine.";
-            } else if (percentage >= 70) {
-                message = "Très bien !";
-                subtitle = "Tu maîtrises bien le sujet. Quelques détails à revoir.";
-            } else if (percentage >= 50) {
-                message = "Pas mal !";
-                subtitle = "Bonne base, mais relis le planning et les missions.";
-            } else {
-                message = "À revoir";
-                subtitle = "Reprends le planning de la semaine et les missions du stage.";
-            }
-
-            const breakdownHTML = answers.map((a, i) => {
-                if (a.type === "mcq") {
-                    return `
-                        <div class="breakdown-item">
-                            <span class="q-text">Q${i + 1}. ${a.question.substring(0, 60)}${a.question.length > 60 ? '...' : ''}</span>
-                            <span class="q-result ${a.correct ? 'pass' : 'fail'}">${a.correct ? '✓' : '✗'}</span>
-                        </div>
-                    `;
-                } else {
-                    return `
-                        <div class="breakdown-item">
-                            <span class="q-text">Q${i + 1}. ${a.question.substring(0, 60)}${a.question.length > 60 ? '...' : ''}</span>
-                            <span class="q-result text">📝</span>
-                        </div>
-                    `;
-                }
-            }).join("");
-
-            const textAnswersHTML = answers
-                .filter(a => a.type === "text")
-                .map(a => `
-                    <div class="text-answer-item">
-                        <div class="ta-question">${a.question}</div>
-                        <div class="ta-response">"${a.response}"</div>
-                    </div>
-                `).join("");
+            if (pct >= 90) { message = "Exceptionnel !"; subtitle = "Tu maîtrises les bases tech et IA — prêt pour ton projet."; }
+            else if (pct >= 70) { message = "Très bien !"; subtitle = "Solide compréhension. Quelques nuances à approfondir."; }
+            else if (pct >= 50) { message = "Pas mal !"; subtitle = "Les bases sont là. Revois les concepts HTML/CSS et le prompting."; }
+            else { message = "À approfondir"; subtitle = "Revois les vidéos et les concepts tech de la semaine."; }
 
             resultsDiv.innerHTML = `
-                <div class="score-circle">
-                    <div class="score-number">${score}/${mcqCount}</div>
-                    <div class="score-label">${percentage}%</div>
-                </div>
+                <div class="score-circle"><div class="score-number">${score}/${mcqCount}</div><div class="score-label">${pct}%</div></div>
                 <div class="results-message">${message}</div>
                 <div class="results-subtitle">${subtitle}</div>
-
-                <div class="results-breakdown">
-                    <h3>Détail des réponses</h3>
-                    ${breakdownHTML}
+                <div class="results-breakdown"><h3>Détail des réponses</h3>
+                    ${answers.map((a, i) => `<div class="breakdown-item"><span class="q-text">Q${i+1}. ${a.question.substring(0, 65)}${a.question.length > 65 ? '...' : ''}</span><span class="q-result ${a.type === 'text' ? 'text' : (a.correct ? 'pass' : 'fail')}">${a.type === 'text' ? '📝' : (a.correct ? '✓' : '✗')}</span></div>`).join("")}
                 </div>
-
-                ${textAnswersHTML ? `
-                    <div class="text-answers-section">
-                        <h3>Tes réponses ouvertes</h3>
-                        ${textAnswersHTML}
-                    </div>
-                ` : ''}
-
+                ${answers.filter(a => a.type === "text").length ? `<div class="text-answers-section"><h3>Tes réponses ouvertes</h3>${answers.filter(a => a.type === "text").map(a => `<div class="text-answer-item"><div class="ta-question">${a.question}</div><div class="ta-response">"${a.response}"</div></div>`).join("")}</div>` : ''}
                 <button class="btn-retry" onclick="location.reload()">Recommencer</button>
-                <p style="margin-top: 20px; color: #9ca3af; font-size: 0.75rem;">Quiz créé pour ${userName} &mdash; Butterfly Agency &mdash; Juin 2026</p>
+                <p style="margin-top:24px;color:#9ca3af;font-size:0.8rem;">Quiz créé pour ${userName} &mdash; Butterfly Agency &mdash; Juin 2026</p>
             `;
-
             saveResults();
         }
     </script>
