@@ -218,6 +218,141 @@
         .badge-outils { background: #e0f2fe; color: #0284c7; }
         .badge-culture { background: #fef3c7; color: #d97706; }
 
+        /* Admin Panel */
+        .admin-panel {
+            animation: fadeIn 0.6s ease;
+        }
+
+        .admin-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .admin-header h2 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #111827;
+            margin-bottom: 4px;
+        }
+
+        .admin-header p {
+            color: #9ca3af;
+            font-size: 0.85rem;
+        }
+
+        .admin-card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 16px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+
+        .admin-card .ac-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 8px;
+        }
+
+        .admin-card .ac-question {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .admin-card .ac-answer {
+            font-size: 0.85rem;
+            color: #059669;
+            font-weight: 600;
+            padding: 8px 12px;
+            background: #ecfdf5;
+            border-radius: 8px;
+            border: 1px solid #a7f3d0;
+        }
+
+        .admin-card .ac-type {
+            font-size: 0.75rem;
+            color: #9ca3af;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        .admin-no-responses {
+            text-align: center;
+            padding: 40px;
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        .admin-responses-list {
+            margin-top: 12px;
+        }
+
+        .admin-response-entry {
+            padding: 10px 12px;
+            background: #f3f0ff;
+            border-radius: 8px;
+            border: 1px solid #e0d8f8;
+            margin-top: 8px;
+        }
+
+        .admin-response-entry .are-name {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #7C3AED;
+            margin-bottom: 4px;
+        }
+
+        .admin-response-entry .are-text {
+            font-size: 0.85rem;
+            color: #4b5563;
+            font-style: italic;
+        }
+
+        .admin-response-entry .are-date {
+            font-size: 0.7rem;
+            color: #9ca3af;
+            margin-top: 4px;
+        }
+
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+        }
+
+        .stat-card .stat-number {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #7C3AED;
+        }
+
+        .stat-card .stat-label {
+            font-size: 0.7rem;
+            color: #9ca3af;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
         .question-number {
             font-size: 0.72rem;
             color: #9ca3af;
@@ -588,7 +723,7 @@
         <div id="welcome" class="welcome-screen">
             <div class="logo-mark">&#x1F98B;</div>
             <h1>Quiz Semaine 1</h1>
-            <p class="subtitle">Teste tes connaissances sur ta premiere semaine de stage chez Butterfly Agency.</p>
+            <p class="subtitle">Teste tes connaissances : IA, prompting, HTML, CSS, OOP et culture tech.</p>
 
             <div class="rules">
                 <h3>Regles du jeu</h3>
@@ -622,167 +757,198 @@
 
         <!-- Results -->
         <div id="results" class="results-screen hidden"></div>
+
+        <!-- Admin -->
+        <div id="admin" class="admin-panel hidden"></div>
     </div>
 
     <script>
         const questions = [
             {
                 type: "mcq",
-                category: "planning",
-                badge: "Planning",
-                question: "Quel jour de la semaine Liam est-il en OFF le matin ?",
-                options: ["Mardi", "Mercredi", "Jeudi", "Vendredi"],
+                category: "culture",
+                badge: "IA",
+                question: "Qu'est-ce qu'un agent IA ?",
+                options: [
+                    "Un robot physique qui se déplace",
+                    "Un programme qui peut prendre des décisions et agir de manière autonome pour atteindre un objectif",
+                    "Un chatbot qui répond uniquement à des questions",
+                    "Un antivirus intelligent"
+                ],
+                correct: 1,
+                explanation: "Un agent IA peut percevoir, décider et agir de façon autonome — il ne se contente pas de répondre, il exécute des tâches."
+            },
+            {
+                type: "mcq",
+                category: "culture",
+                badge: "IA",
+                question: "Quelle est la différence entre un chatbot classique et un agent IA ?",
+                options: [
+                    "Il n'y a aucune différence",
+                    "Le chatbot est plus intelligent",
+                    "L'agent peut utiliser des outils, naviguer sur le web, et enchaîner des actions tout seul",
+                    "L'agent fonctionne uniquement hors ligne"
+                ],
                 correct: 2,
-                explanation: "Le jeudi matin est OFF. L'après-midi et le soir c'est The Recap."
+                explanation: "Un agent IA a accès à des outils (recherche web, APIs, fichiers) et peut enchaîner des étapes sans qu'on lui dise chaque action."
+            },
+            {
+                type: "text",
+                category: "culture",
+                badge: "IA",
+                question: "Donne un exemple concret d'agent IA dans le monde réel. Qu'est-ce qu'il fait et pourquoi c'est utile ?",
+                placeholder: "Un exemple d'agent IA serait..."
+            },
+            {
+                type: "mcq",
+                category: "culture",
+                badge: "Prompting",
+                question: "C'est quoi un prompt ?",
+                options: [
+                    "Un langage de programmation",
+                    "L'instruction ou la question que tu donnes à une IA pour obtenir un résultat",
+                    "Le nom d'un logiciel d'IA",
+                    "Une base de données"
+                ],
+                correct: 1,
+                explanation: "Le prompt c'est ce que tu écris à l'IA. La qualité de ta réponse dépend directement de la qualité de ton prompt."
+            },
+            {
+                type: "mcq",
+                category: "culture",
+                badge: "Prompting",
+                question: "Quel prompt va donner le meilleur résultat ?",
+                options: [
+                    "\"Fais-moi un truc sur le marketing\"",
+                    "\"Écris un post LinkedIn de 150 mots pour une agence digitale, ton professionnel mais accessible, avec un hook accrocheur et un CTA\"",
+                    "\"Marketing digital\"",
+                    "\"Aide-moi s'il te plaît\""
+                ],
+                correct: 1,
+                explanation: "Plus ton prompt est précis (contexte, format, ton, longueur), meilleur sera le résultat. Un prompt vague = une réponse vague."
+            },
+            {
+                type: "text",
+                category: "culture",
+                badge: "Prompting",
+                question: "Écris un prompt pour demander à une IA de créer un email professionnel. Sois le plus précis possible.",
+                placeholder: "Mon prompt : ..."
             },
             {
                 type: "mcq",
                 category: "outils",
-                badge: "Outils",
-                question: "Quels outils font partie de la formation donnée par CAM le premier jour ?",
+                badge: "HTML",
+                question: "Qu'est-ce que le HTML ?",
                 options: [
-                    "Google Meet, Slack, Calendar, ChatGPT",
-                    "Figma, Notion, Trello, Canva",
-                    "VS Code, GitHub, Vercel, Claude",
-                    "Zoom, Asana, Miro, Midjourney"
+                    "Un langage de programmation pour créer des applications",
+                    "Le langage qui structure le contenu d'une page web (texte, images, liens)",
+                    "Un outil de design graphique",
+                    "Un protocole de sécurité internet"
                 ],
-                correct: 0,
-                explanation: "CAM forme sur Google Meet, Slack, Calendar et ChatGPT pendant le Day 1."
+                correct: 1,
+                explanation: "HTML = HyperText Markup Language. Il structure le contenu : titres, paragraphes, images, liens. C'est le squelette d'une page web."
             },
             {
                 type: "mcq",
-                category: "missions",
-                badge: "Missions",
-                question: "Pour quelles entreprises Liam doit-il travailler sur Qonto et Revolut ?",
+                category: "outils",
+                badge: "HTML",
+                question: "À quoi sert la balise <a> en HTML ?",
                 options: [
-                    "Butterfly Agency et CAM",
-                    "MCAN et SK (Singapour)",
-                    "NRF Europe et The Recap",
-                    "Laurine Events et BY"
+                    "Afficher une image",
+                    "Créer un lien cliquable vers une autre page",
+                    "Mettre du texte en gras",
+                    "Ajouter une vidéo"
                 ],
                 correct: 1,
-                explanation: "Qonto et Revolut pour MCAN et pour SK à Singapour."
+                explanation: "<a href='url'>texte</a> crée un lien hypertexte. C'est ce qui permet de naviguer d'une page à une autre."
+            },
+            {
+                type: "mcq",
+                category: "outils",
+                badge: "CSS",
+                question: "Si HTML est le squelette d'une page web, le CSS c'est quoi ?",
+                options: [
+                    "Le cerveau (la logique)",
+                    "Le design : couleurs, tailles, espacements, mise en page",
+                    "La base de données",
+                    "Le serveur"
+                ],
+                correct: 1,
+                explanation: "CSS = Cascading Style Sheets. Il gère tout le visuel : couleurs, polices, tailles, animations, responsive design."
+            },
+            {
+                type: "mcq",
+                category: "culture",
+                badge: "OOP",
+                question: "La Programmation Orientée Objet (OOP), c'est quoi le principe de base ?",
+                options: [
+                    "Écrire du code ligne par ligne sans structure",
+                    "Organiser le code en 'objets' qui ont des propriétés et des actions, comme dans le monde réel",
+                    "Programmer uniquement avec des chiffres",
+                    "Un type de design web"
+                ],
+                correct: 1,
+                explanation: "En OOP, on modélise le monde réel : un objet 'Voiture' a des propriétés (couleur, vitesse) et des actions (démarrer, freiner)."
             },
             {
                 type: "text",
                 category: "culture",
-                badge: "Culture IA",
-                question: "Dans la vidéo 'Understanding AI Agents in 10 Minutes', qu'est-ce qu'un agent IA ? Explique avec tes mots.",
-                placeholder: "Un agent IA c'est..."
+                badge: "OOP",
+                question: "Imagine un objet 'Téléphone' en OOP. Liste 3 propriétés (caractéristiques) et 2 méthodes (actions) qu'il pourrait avoir.",
+                placeholder: "Propriétés : ...\nMéthodes : ..."
             },
             {
                 type: "mcq",
-                category: "planning",
-                badge: "Planning",
-                question: "Que doit faire Liam le mardi (Day 2) ?",
+                category: "culture",
+                badge: "Tech",
+                question: "Qu'est-ce qu'une API ?",
                 options: [
-                    "Aller à Meudon toute la journée",
-                    "Matin chez lui pour apprendre, après-midi en call",
-                    "Enregistrer un podcast",
-                    "Travailler sur les projets IA"
+                    "Un type de câble internet",
+                    "Un pont qui permet à deux logiciels de communiquer entre eux",
+                    "Un langage de programmation",
+                    "Un réseau social"
                 ],
                 correct: 1,
-                explanation: "Le mardi est en home : matin lecture/apprentissage, après-midi call avec l'équipe."
+                explanation: "API = Application Programming Interface. C'est comme un serveur au restaurant : tu passes ta commande (requête), il va en cuisine (serveur), et te ramène ton plat (réponse)."
             },
             {
                 type: "mcq",
-                category: "missions",
-                badge: "Missions",
-                question: "Quel type d'audit Liam doit-il réaliser pour BY sur YouTube ?",
+                category: "culture",
+                badge: "Tech",
+                question: "Le 'scraping' de données, c'est quoi ?",
                 options: [
-                    "Audit technique SEO",
-                    "Audit social media",
-                    "Audit financier",
-                    "Audit de sécurité"
+                    "Supprimer des données d'un site web",
+                    "Extraire automatiquement des informations depuis des pages web",
+                    "Créer un site web à partir de zéro",
+                    "Envoyer des emails en masse"
                 ],
                 correct: 1,
-                explanation: "C'est un audit social BY // YT — analyse des réseaux sociaux et YouTube."
+                explanation: "Le scraping permet de collecter automatiquement des données sur des sites web — exactement ce que tu vas faire pour NRF Europe 2026."
+            },
+            {
+                type: "mcq",
+                category: "culture",
+                badge: "IA",
+                question: "Pourquoi l'IA ne remplace pas un humain dans un projet créatif ?",
+                options: [
+                    "L'IA est trop lente",
+                    "L'IA génère du contenu mais n'a pas de vision stratégique, de goût, ni de compréhension du contexte client",
+                    "L'IA n'existe pas encore vraiment",
+                    "L'IA ne peut créer que du texte"
+                ],
+                correct: 1,
+                explanation: "L'IA est un outil puissant mais c'est l'humain qui donne la direction, valide la qualité, et comprend les enjeux business."
             },
             {
                 type: "text",
                 category: "culture",
-                badge: "Culture IA",
-                question: "D'après la vidéo sur les prompts efficaces, cite 2 techniques pour écrire un bon prompt.",
-                placeholder: "Technique 1 :...\nTechnique 2 :..."
-            },
-            {
-                type: "mcq",
-                category: "planning",
-                badge: "Planning",
-                question: "Combien d'épisodes de podcast Liam doit-il écouter en devoir le Day 1 ?",
-                options: ["1 épisode", "2 épisodes", "3 épisodes", "5 épisodes"],
-                correct: 2,
-                explanation: "3 épisodes : un NRF, une revue presse, et un Le Café des Femmes."
-            },
-            {
-                type: "mcq",
-                category: "missions",
-                badge: "Missions",
-                question: "Quel événement Liam doit-il scraper pour 2026 ?",
-                options: ["CES Las Vegas", "NRF Europe", "VivaTech", "Web Summit"],
-                correct: 1,
-                explanation: "Scraping NRF Europe 2026 fait partie des missions principales."
-            },
-            {
-                type: "text",
-                category: "culture",
-                badge: "Culture IA",
-                question: "Qu'est-ce que la Programmation Orientée Objet (OOP) ? Donne un exemple simple.",
-                placeholder: "L'OOP c'est..."
-            },
-            {
-                type: "mcq",
-                category: "missions",
-                badge: "Missions",
-                question: "Quel est l'objectif final du stage de Liam ?",
-                options: [
-                    "Devenir community manager",
-                    "Construire un projet IA de A à Z, coaché par CAM",
-                    "Créer un site web pour Butterfly Agency",
-                    "Apprendre le montage vidéo professionnel"
-                ],
-                correct: 1,
-                explanation: "L'objectif final est de construire un projet IA qui lui appartient de A à Z, coaché par CAM."
-            },
-            {
-                type: "mcq",
-                category: "planning",
-                badge: "Planning",
-                question: "Qui présente les réseaux sociaux à Liam le Day 1 ?",
-                options: ["CAM", "Laurine", "Cristian", "Le client"],
-                correct: 1,
-                explanation: "Laurine fait la présentation des réseaux sociaux pendant le Day 1."
-            },
-            {
-                type: "mcq",
-                category: "missions",
-                badge: "Missions",
-                question: "Quel type d'événements Liam doit-il lister dans le monde entier ?",
-                options: [
-                    "Événements tech & startup",
-                    "Événements ecom & retail pour être speaker",
-                    "Conférences académiques",
-                    "Salons de mode et luxe"
-                ],
-                correct: 1,
-                explanation: "Lister les events ecom & retail worldwide pour être speaker."
-            },
-            {
-                type: "text",
-                category: "culture",
-                badge: "Culture IA",
-                question: "Qu'est-ce que le HTML et à quoi sert-il ? Cite 2 balises que tu connais.",
-                placeholder: "Le HTML c'est...\nBalise 1 :...\nBalise 2 :..."
-            },
-            {
-                type: "text",
-                category: "missions",
-                badge: "Missions",
-                question: "En une phrase, qu'est-ce que tu retiens le plus de ta première semaine ? Qu'est-ce qui t'a le plus surpris ou motivé ?",
-                placeholder: "Ce que je retiens..."
+                badge: "Réflexion",
+                question: "D'après tout ce que tu as appris cette semaine, comment l'IA pourrait t'aider concrètement dans ton travail au quotidien ? Donne 2 exemples précis.",
+                placeholder: "L'IA pourrait m'aider à..."
             }
         ];
 
+        const ADMIN_PASSWORD = "pepito";
         let currentQuestion = 0;
         let score = 0;
         let userName = "";
@@ -801,8 +967,126 @@
 
         btnStart.addEventListener("click", startQuiz);
 
+        function saveResults() {
+            const allResults = JSON.parse(localStorage.getItem("quiz_results") || "[]");
+            allResults.push({
+                name: userName,
+                date: new Date().toLocaleString("fr-FR"),
+                score: score,
+                mcqCount: answers.filter(a => a.type === "mcq").length,
+                answers: answers
+            });
+            localStorage.setItem("quiz_results", JSON.stringify(allResults));
+        }
+
+        function showAdmin() {
+            document.getElementById("welcome").classList.add("hidden");
+            const adminDiv = document.getElementById("admin");
+            adminDiv.classList.remove("hidden");
+
+            const allResults = JSON.parse(localStorage.getItem("quiz_results") || "[]");
+
+            const totalParticipants = allResults.length;
+            const avgScore = totalParticipants > 0
+                ? Math.round(allResults.reduce((s, r) => s + (r.score / r.mcqCount) * 100, 0) / totalParticipants)
+                : 0;
+            const bestScore = totalParticipants > 0
+                ? Math.round(Math.max(...allResults.map(r => (r.score / r.mcqCount) * 100)))
+                : 0;
+
+            const answersHTML = questions.map((q, qi) => {
+                const badgeClass = {
+                    planning: "badge-planning",
+                    missions: "badge-missions",
+                    outils: "badge-outils",
+                    culture: "badge-culture"
+                }[q.category] || "badge-culture";
+
+                if (q.type === "mcq") {
+                    const letters = ["A", "B", "C", "D"];
+                    return `
+                        <div class="admin-card">
+                            <span class="ac-badge ${badgeClass}">${q.badge}</span>
+                            <div class="ac-question">Q${qi + 1}. ${q.question}</div>
+                            <div class="ac-answer">${letters[q.correct]}. ${q.options[q.correct]}</div>
+                            ${getResponsesForQuestion(allResults, qi, "mcq")}
+                        </div>
+                    `;
+                } else {
+                    return `
+                        <div class="admin-card">
+                            <span class="ac-badge ${badgeClass}">${q.badge}</span>
+                            <div class="ac-question">Q${qi + 1}. ${q.question}</div>
+                            <div class="ac-type">Question ouverte — réponses ci-dessous</div>
+                            ${getResponsesForQuestion(allResults, qi, "text")}
+                        </div>
+                    `;
+                }
+            }).join("");
+
+            adminDiv.innerHTML = `
+                <div class="admin-header">
+                    <h2>Panel Admin</h2>
+                    <p>Réponses correctes + résultats des participants</p>
+                </div>
+
+                <div class="admin-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">${totalParticipants}</div>
+                        <div class="stat-label">Participants</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${avgScore}%</div>
+                        <div class="stat-label">Moyenne</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">${bestScore}%</div>
+                        <div class="stat-label">Meilleur</div>
+                    </div>
+                </div>
+
+                ${answersHTML}
+
+                <div style="text-align: center; margin-top: 24px;">
+                    <button class="btn-retry" onclick="location.reload()">Retour</button>
+                </div>
+            `;
+        }
+
+        function getResponsesForQuestion(allResults, qIndex, type) {
+            if (allResults.length === 0) return '';
+
+            const responses = allResults
+                .filter(r => r.answers[qIndex])
+                .map(r => ({ name: r.name, date: r.date, answer: r.answers[qIndex] }));
+
+            if (responses.length === 0) return '';
+
+            if (type === "mcq") {
+                const html = responses.map(r => {
+                    const icon = r.answer.correct ? '✓' : '✗';
+                    const color = r.answer.correct ? '#059669' : '#dc2626';
+                    return `<div style="font-size:0.8rem;color:${color};padding:4px 0;"><strong>${r.name}</strong> — ${icon} ${r.answer.selected} <span style="color:#9ca3af;font-size:0.7rem;">${r.date}</span></div>`;
+                }).join("");
+                return `<div class="admin-responses-list">${html}</div>`;
+            } else {
+                const html = responses.map(r => `
+                    <div class="admin-response-entry">
+                        <div class="are-name">${r.name}</div>
+                        <div class="are-text">"${r.answer.response}"</div>
+                        <div class="are-date">${r.date}</div>
+                    </div>
+                `).join("");
+                return `<div class="admin-responses-list">${html}</div>`;
+            }
+        }
+
         function startQuiz() {
             userName = nameInput.value.trim();
+            if (userName.toLowerCase() === ADMIN_PASSWORD) {
+                showAdmin();
+                return;
+            }
             document.getElementById("welcome").classList.add("hidden");
             document.getElementById("quiz").classList.remove("hidden");
             showQuestion();
@@ -998,6 +1282,8 @@
                 <button class="btn-retry" onclick="location.reload()">Recommencer</button>
                 <p style="margin-top: 20px; color: #9ca3af; font-size: 0.75rem;">Quiz créé pour ${userName} &mdash; Butterfly Agency &mdash; Juin 2026</p>
             `;
+
+            saveResults();
         }
     </script>
 </body>
